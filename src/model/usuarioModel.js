@@ -7,10 +7,8 @@ let logarUsuario = async (email, senha) =>{
     try {
         const rows = await db.query(sql, values);
         if (rows.length > 0) {
-            return {
-                success: true,
-                user: rows[0]
-            };
+            return rows[0]
+            
         } else {
             return {msg:'Email ou senha incorretos'}
         }
