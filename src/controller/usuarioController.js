@@ -1,7 +1,7 @@
 require('dotenv').config();
 const usuarioModel = require('../model/usuarioModel');
 const token = require('../util/token')
-const key = process.env.KEY
+const key = process.env.KEY;
 
 exports.login = async (email, senha) =>{
     let resp = await usuarioModel.logarUsuario(email, senha);

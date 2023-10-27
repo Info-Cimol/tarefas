@@ -7,5 +7,4 @@ exports.listarTarefas= async (iduser)=>{
 
 exports.criarTarefa = async (titulo, descricao, status, iduser) =>{
     return await tarefaModel.criarTarefa(titulo, descricao, status, iduser);
-    
 }
