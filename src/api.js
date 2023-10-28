@@ -44,4 +44,24 @@ app.use('/criarTarefa', router.post('/criarTarefa', async (req, res) =>{
 	}  
 }))
 
+app.use('/tarefa/:id', router.get('/tarefa/:id', async (req, res) =>{
+    if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
+        const tarefaId = req.params.id;
+        let resp = await tarefaController.buscarTarefa(req.headers.iduser, tarefaId);
+        res.status(200).send(resp);
+    }else{
+		res.status(400).send({msg:"Erro ao buscar tarefa"});
+	} 
+}))
+
+app.use('/tarefa/deletar/:id', router.delete('/tarefa/deletar/:id', async (req, res) => {
+    if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
+        const tarefaId = req.params.id;
+        let resp = await tarefaController.deletarTarefa(req.headers.iduser, tarefaId);
+        res.status(200).send(resp);
+    }else{
+        res.status(400).send({msg:"Erro ao deletar tarefa"});
+    }
+}))
+
 module.exports=app;

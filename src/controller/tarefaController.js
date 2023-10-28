@@ -8,3 +8,11 @@ exports.listarTarefas= async (iduser)=>{
 exports.criarTarefa = async (titulo, descricao, status, iduser) =>{
     return await tarefaModel.criarTarefa(titulo, descricao, status, iduser);
 }
+
+exports.buscarTarefa = async (iduser, tarefaId) =>{
+    return await tarefaModel.buscarTarefa(iduser, tarefaId);
+}
+
+exports.deletarTarefa = async (iduser, tarefaId) =>{
+    return await tarefaModel.deletarTarefa(iduser, tarefaId);
+}
