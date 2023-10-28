@@ -64,4 +64,14 @@ app.use('/tarefa/deletar/:id', router.delete('/tarefa/deletar/:id', async (req, 
     }
 }))
 
+app.use('/tarefa/alterar/:id', router.put('/tarefa/alterar/:id', async (req, res) => {
+    if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
+        const tarefaId = req.params.id;
+        let resp = await tarefaController.alterarTabela(req.headers.iduser, tarefaId, req.body.titulo, req.body.descricao, req.body.status);
+        res.status(200).send(resp);
+    }else{
+        res.status(400).send({msg: "Erro ao alterar tabela"});
+    }
+}))
+
 module.exports=app;

@@ -16,3 +16,7 @@ exports.buscarTarefa = async (iduser, tarefaId) =>{
 exports.deletarTarefa = async (iduser, tarefaId) =>{
     return await tarefaModel.deletarTarefa(iduser, tarefaId);
 }
+
+exports.alterarTabela = async (iduser, tarefaId, titulo, descricao, status) =>{
+    return await tarefaModel.alterarTarefa(iduser, tarefaId, titulo, descricao, status);
+}

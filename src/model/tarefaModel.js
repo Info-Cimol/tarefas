@@ -47,4 +47,16 @@ let deletarTarefa = async (iduser, tarefaId) =>{
   }
 }
 
-module.exports = { listarTarefas, criarTarefa, buscarTarefa, deletarTarefa };
+let alterarTarefa = async (iduser, tarefaId, titulo, descricao, status) =>{
+  const sql = 'UPDATE tarefa SET title = ?, description = ?, status = ? WHERE id_tarefa = ? AND usuario_id_usuario = ?';
+  const values = [titulo, descricao, status, tarefaId, iduser]
+
+  const tarefa = await db.query(sql, values)
+  if(tarefa.affectedRows > 0){
+    return {msg: "Tarefa alterada com sucesso"};
+  }else{
+    return {msg: "Tarefa não encontrada"};
+  }
+}
+
+module.exports = { listarTarefas, criarTarefa, buscarTarefa, deletarTarefa, alterarTarefa };
