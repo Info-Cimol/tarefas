@@ -4,7 +4,7 @@ app.use((req,res, next)=>{
 	next();
 });
 
-let port = process.env.API_PORT;
+let port = process.env.API_PORT || 5000;
 
 app.listen(port);
 
