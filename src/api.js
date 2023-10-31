@@ -54,7 +54,7 @@ app.use('/tarefa/:id', router.get('/tarefa/:id', async (req, res) =>{
 	} 
 }))
 
-app.use('/tarefa/:id', router.delete('/tarefa/deletar/:id', async (req, res) => {
+app.use('/tarefa/:id', router.delete('/tarefa/:id', async (req, res) => {
     if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
         const tarefaId = req.params.id;
         let resp = await tarefaController.deletarTarefa(req.headers.iduser, tarefaId);
@@ -64,7 +64,7 @@ app.use('/tarefa/:id', router.delete('/tarefa/deletar/:id', async (req, res) => 
     }
 }))
 
-app.use('/tarefa/:id', router.put('/tarefa/alterar/:id', async (req, res) => {
+app.use('/tarefa/:id', router.put('/tarefa/:id', async (req, res) => {
     if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
         const tarefaId = req.params.id;
         let resp = await tarefaController.alterarTabela(req.headers.iduser, tarefaId, req.body.titulo, req.body.descricao, req.body.status);
