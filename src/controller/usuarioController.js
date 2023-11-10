@@ -5,13 +5,12 @@ const key = process.env.KEY;
 
 exports.login = async (email, senha) =>{
     let resp = await usuarioModel.logarUsuario(email, senha);
-
     if(resp.id_usuario){
         return{
             "auth": true,
             "token": await token.setToken(JSON.stringify(resp.id_usuario).replace(/"/g, ""),key),
             "user": {
-                "id": resp.id_user,
+                "id": resp.id_usuario,
                 "nome": resp.nome,
                 "email": resp.email
             }
