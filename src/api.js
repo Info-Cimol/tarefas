@@ -26,7 +26,7 @@ app.use('/login', router.post('/login', async (req, res) =>{
     res.status(200).send(resp);
 }))
 
-app.use('/listarTarefas', router.get('/listarTarefas', async (req, res) =>{
+app.use('/tarefas', router.get('/tarefas', async (req, res) =>{
     if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
         let resp = await tarefaController.listarTarefas(req.headers.iduser);
         res.status(200).send(resp); 
