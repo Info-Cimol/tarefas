@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const tarefaController = require('./controller/tarefaController');
 const usuarioController = require('./controller/usuarioController');
 const token = require('./util/token');
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(cors());
 const key = process.env.KEY;
 const router = express.Router()
 
@@ -71,6 +73,14 @@ app.use('/tarefa/:id', router.put('/tarefa/:id', async (req, res) => {
         res.status(200).send(resp);
     }else{
         res.status(400).send({msg: "Erro ao alterar tabela"});
+    }
+}))
+
+app.use('/token', router.post('/token', async (req, res) =>{
+    if(await token.checkToken(req.headers.token, req.headers.iduser, key)){
+        res.status(200).send({ auth: true});
+    }else{
+        res.status(401).send({ auth: false})
     }
 }))
 
